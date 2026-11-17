@@ -3,92 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>건강보험 검진기관 위치찾기</title>
+<title>장애인 건강검진기관 위치찾기</title>
 <style>
-:root{--bg:#f4f7f6;--card:#fff;--ink:#1d2b2a;--sub:#5d6d6b;--line:#dfe7e5;--pri:#0f7b6c;--pri2:#e3f3f0;--warn:#fff6e0}
-@media (prefers-color-scheme:dark){:root{--bg:#121816;--card:#1b2321;--ink:#e6eeec;--sub:#9fb0ad;--line:#2c3734;--pri:#3cc2aa;--pri2:#1d3531;--warn:#3a321c}}
+:root{--bg:#f4f6fb;--card:#fff;--ink:#1c2333;--sub:#5a6478;--line:#dde2ec;--pri:#2f5bd3;--pri2:#e6edfc;--warn:#fff6e0}
+@media (prefers-color-scheme:dark){:root{--bg:#11151d;--card:#1a202b;--ink:#e7ebf3;--sub:#a0aabb;--line:#2c3443;--pri:#7c9cff;--pri2:#1f2a44;--warn:#3a321c}}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
 .wrap{max-width:640px;margin:0 auto;padding:18px 14px 40px}
-h1{font-size:1.35rem;margin:4px 0 2px}
-.lead{color:var(--sub);font-size:.92rem;margin:0 0 16px}
+h1{font-size:1.4rem;margin:4px 0 2px}
+.lead{color:var(--sub);font-size:.95rem;margin:0 0 16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-.card h2{font-size:1rem;margin:0 0 12px}
-label.t{display:block;font-size:.85rem;color:var(--sub);margin:10px 0 4px}
-select,input[type=text]{width:100%;padding:11px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+.card h2{font-size:1.05rem;margin:0 0 12px}
+label.t{display:block;font-size:.9rem;color:var(--sub);margin:10px 0 4px}
+select,input[type=text]{width:100%;min-height:48px;padding:11px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+select:focus,input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
 .row{display:flex;gap:8px}.row>*{flex:1}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:999px;font-size:.88rem;cursor:pointer}
-.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}
-.btn{display:block;width:100%;padding:13px;border:0;border-radius:12px;background:var(--pri);color:#fff;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px}
-.btn.ghost{background:var(--pri2);color:var(--pri)}
-.q{background:var(--pri2);border-radius:10px;padding:10px 12px;font-weight:600;margin-bottom:12px;word-break:keep-all}
+.btn{display:block;width:100%;min-height:52px;padding:13px;border:0;border-radius:12px;background:var(--pri);color:#fff;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:14px}
+.q{background:var(--pri2);border-radius:10px;padding:10px 12px;font-weight:700;margin-bottom:12px;word-break:keep-all}
 .links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.links a{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;padding:12px 8px;border-radius:10px;border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.93rem;background:var(--card)}
+.links a{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;min-height:48px;padding:12px 8px;border-radius:10px;border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:.95rem;background:var(--card);text-align:center}
 .links a.full{grid-column:1/-1;background:var(--pri);color:#fff;border-color:var(--pri)}
-.dot{width:10px;height:10px;border-radius:50%}
-.tip{background:var(--warn);border-radius:10px;padding:10px 12px;font-size:.88rem;margin-top:12px}
-.tip b{display:block;margin-bottom:2px}
-ul.info{margin:0;padding-left:18px;font-size:.9rem}ul.info li{margin:3px 0}
+.links a.wide{grid-column:1/-1}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.tip{background:var(--warn);border-radius:10px;padding:10px 12px;font-size:.92rem;margin-top:12px}
+ul.info{margin:0;padding-left:20px;font-size:.95rem}ul.info li{margin:4px 0}
+.checks label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:.95rem;cursor:pointer}
+.checks label:last-child{border-bottom:0}
+.checks input{width:22px;height:22px;flex:none;margin-top:2px}
 .recent{display:flex;flex-direction:column;gap:6px}
-.recent button{text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 12px;border-radius:10px;font-size:.9rem;cursor:pointer}
-.muted{color:var(--sub);font-size:.82rem}
+.recent button{text-align:left;min-height:44px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 12px;border-radius:10px;font-size:.95rem;cursor:pointer}
+.muted{color:var(--sub);font-size:.85rem}
 .hidden{display:none}
-.tel{font-weight:700}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>🏥 건강보험 검진기관 위치찾기</h1>
-  <p class="lead">지역과 검진 종류를 고르면 지도 앱에서 가까운 국가건강검진 지정기관을 바로 찾아줍니다.</p>
+<main class="wrap">
+  <h1>♿ 장애인 건강검진기관 위치찾기</h1>
+  <p class="lead">보건복지부가 지정한 <b>장애인 건강검진기관</b>을 찾습니다. 휠체어로 이용할 수 있는 시설과 장비, 수어통역 같은 의사소통 지원을 갖춘 검진기관이에요.</p>
 
-  <div class="card">
-    <h2>1. 지역 선택</h2>
+  <section class="card" aria-labelledby="h-region">
+    <h2 id="h-region">1. 지역 선택</h2>
     <div class="row">
       <div><label class="t" for="sido">시·도</label><select id="sido"></select></div>
-      <div><label class="t" for="sgg">시·군·구</label><select id="sgg"></select></div>
+      <div><label class="t" for="sgg">시·군·구 (선택)</label><select id="sgg"></select></div>
     </div>
-    <label class="t" for="dong">읍·면·동 / 역 이름 (선택)</label>
-    <input type="text" id="dong" placeholder="예: 역삼동, 강남역">
-    <p class="muted" style="margin:8px 0 0">지역을 비워두면 휴대폰 지도 앱이 <b>현재 위치 주변</b>으로 검색합니다.</p>
-  </div>
+    <p class="muted" style="margin:8px 0 0">장애인 건강검진기관은 아직 수가 적어서 시·군·구마다 있지 않아요. 결과가 없으면 <b>시·도 전체</b>로 넓혀 찾아보세요. 시·도를 비워두면 지도 앱이 <b>현재 위치 주변</b>으로 검색합니다.</p>
+    <button class="btn" id="go">장애인 건강검진기관 찾기</button>
+  </section>
 
-  <div class="card">
-    <h2>2. 검진 종류</h2>
-    <div class="chips" id="types"></div>
-    <label class="t">검진 요일 (선택)</label>
-    <div class="chips" id="days"></div>
-    <label class="t" for="kw">추가 키워드 (선택)</label>
-    <input type="text" id="kw" placeholder="예: 수면내시경, 여성전용, 병원이름">
-    <button class="btn" id="go">검진기관 찾기</button>
-  </div>
-
-  <div class="card hidden" id="result">
-    <h2>3. 검색 결과 열기</h2>
+  <section class="card hidden" id="result" aria-live="polite" aria-labelledby="h-result">
+    <h2 id="h-result">2. 지도에서 보기</h2>
     <div class="q" id="qtext"></div>
     <div class="links" id="links"></div>
-    <div class="tip" id="tip"></div>
-  </div>
+    <div class="tip">지도 검색 결과에는 일반 병원도 섞여 나올 수 있어요. 병원 이름 옆에 '장애인 건강검진기관'이 있는지 확인하고, 예약 전에 꼭 전화로 확인하세요.</div>
+  </section>
 
-  <div class="card hidden" id="recentCard">
-    <h2>최근 검색</h2>
+  <section class="card hidden" id="recentCard" aria-labelledby="h-recent">
+    <h2 id="h-recent">최근 검색</h2>
     <div class="recent" id="recent"></div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>📌 공식 지정기관 확인 방법</h2>
+  <section class="card" aria-labelledby="h-check">
+    <h2 id="h-check">📞 예약 전화할 때 확인할 것</h2>
+    <p class="muted" style="margin:0 0 6px">필요한 항목에 체크해 두고, 전화할 때 하나씩 물어보세요.</p>
+    <div class="checks" id="checks"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-info">
+    <h2 id="h-info">📌 알아두면 좋은 점</h2>
     <ul class="info">
-      <li>국가검진은 <b>공단 지정 검진기관</b>에서만 무료(일부 본인부담)로 받을 수 있어요. 지도에서 찾은 병원은 예약 전 전화로 “국가건강검진 지정기관인가요?”를 꼭 확인하세요.</li>
-      <li>가장 정확한 목록: <b>국민건강보험공단 홈페이지</b> 또는 <b>The건강보험 앱</b>의 검진기관 찾기 (시도·시군구, 검진종류, 검진 요일, 우수기관 필터 제공).</li>
-      <li>본인 검진 대상 여부·항목은 로그인 후 「건강검진 대상조회」에서 확인할 수 있어요.</li>
-      <li>공단 고객센터: <span class="tel">1577-1000</span> <a href="tel:15771000">전화걸기</a></li>
+      <li>장애인 건강검진기관에서도 일반 국가건강검진과 암검진을 똑같이 받을 수 있어요. 대상 여부는 국민건강보험공단 「건강검진 대상조회」나 'The건강보험' 앱에서 확인하세요.</li>
+      <li>정부는 장애인 건강검진기관을 계속 늘리고 있어요. 새로 지정된 곳은 지도에 아직 표시되지 않을 수 있으니 공식 목록도 함께 확인하세요.</li>
+      <li>국민건강보험공단 고객센터: <b>1577-1000</b> <a href="tel:15771000">전화걸기</a></li>
+      <li>보건복지콜센터: <b>129</b> <a href="tel:129">전화걸기</a></li>
     </ul>
     <div class="links" style="margin-top:12px">
-      <a class="full" href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단 홈페이지 열기 ↗</a>
+      <a class="wide" href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단 ↗</a>
+      <a class="wide" href="https://www.nrc.go.kr" target="_blank" rel="noopener">국립재활원 (장애인 건강보건관리) ↗</a>
     </div>
-  </div>
-  <p class="muted" style="text-align:center">지도 검색 결과는 각 지도 서비스 정보이며, 지정 여부는 공단 기준으로 최종 확인하세요.</p>
-</div>
+  </section>
+  <p class="muted" style="text-align:center">지도 검색 결과는 각 지도 서비스의 정보입니다. 지정 여부는 공식 기관에서 최종 확인하세요.</p>
+</main>
 
 <script>
 const REGIONS = {
@@ -99,7 +94,7 @@ const REGIONS = {
 "광주광역시":"광산구 남구 동구 북구 서구",
 "대전광역시":"대덕구 동구 서구 유성구 중구",
 "울산광역시":"남구 동구 북구 울주군 중구",
-"세종특별자치시":"세종시",
+"세종특별자치시":"",
 "경기도":"가평군 고양시 과천시 광명시 광주시 구리시 군포시 김포시 남양주시 동두천시 부천시 성남시 수원시 시흥시 안산시 안성시 안양시 양주시 양평군 여주시 연천군 오산시 용인시 의왕시 의정부시 이천시 파주시 평택시 포천시 하남시 화성시",
 "강원특별자치도":"강릉시 고성군 동해시 삼척시 속초시 양구군 양양군 영월군 원주시 인제군 정선군 철원군 춘천시 태백시 평창군 홍천군 화천군 횡성군",
 "충청북도":"괴산군 단양군 보은군 영동군 옥천군 음성군 제천시 증평군 진천군 청주시 충주시",
@@ -111,68 +106,57 @@ const REGIONS = {
 "제주특별자치도":"서귀포시 제주시"
 };
 const SHORT = {"서울특별시":"서울","부산광역시":"부산","대구광역시":"대구","인천광역시":"인천","광주광역시":"광주","대전광역시":"대전","울산광역시":"울산","세종특별자치시":"세종","경기도":"경기","강원특별자치도":"강원","충청북도":"충북","충청남도":"충남","전북특별자치도":"전북","전라남도":"전남","경상북도":"경북","경상남도":"경남","제주특별자치도":"제주"};
-
-const TYPES = [
- {id:"general",label:"일반검진",q:"국가건강검진",tip:"만 20세 이상 지역가입자·피부양자, 직장가입자 등 대상. 사무직은 2년마다(출생연도 짝·홀수에 맞춰), 비사무직은 매년. 공복 8시간 이상 필요."},
- {id:"stomach",label:"위암",q:"위내시경 국가암검진",tip:"만 40세 이상, 2년마다. 위내시경(또는 위장조영). 수면내시경은 추가 비용이 있을 수 있어요."},
- {id:"colon",label:"대장암",q:"대장암검진 분변잠혈",tip:"만 50세 이상, 매년 분변잠혈검사. 양성이면 대장내시경 등 추가검사 지원."},
- {id:"liver",label:"간암",q:"간암검진 간초음파",tip:"만 40세 이상 간암 고위험군, 6개월마다 간초음파 + 혈액검사."},
- {id:"breast",label:"유방암",q:"유방촬영 국가암검진",tip:"만 40세 이상 여성, 2년마다 유방촬영."},
- {id:"cervix",label:"자궁경부암",q:"자궁경부암검진 산부인과",tip:"만 20세 이상 여성, 2년마다 자궁경부세포검사."},
- {id:"lung",label:"폐암",q:"폐암검진 저선량CT",tip:"만 54~74세 고위험 흡연자(30갑년 이상), 2년마다 저선량 흉부CT."},
- {id:"oral",label:"구강검진",q:"구강검진 치과",tip:"일반검진 대상자는 치과에서 구강검진을 함께 받을 수 있어요."},
- {id:"infant",label:"영유아검진",q:"영유아검진 소아청소년과",tip:"생후 14일~71개월, 건강검진 8회 + 구강검진 4회. 차수별 검진 기간을 꼭 확인하세요."}
+const CHECKS = [
+ "휠체어로 검진실·화장실까지 이동할 수 있나요?",
+ "휠체어 체중계, 높이 조절 검진대 같은 장비가 있나요?",
+ "수어통역이나 문자 안내를 받을 수 있나요?",
+ "시각장애인을 위한 안내(점자, 음성, 동행)가 있나요?",
+ "발달장애인을 위한 쉬운 안내문이나 진정·수면 검사가 가능한가요?",
+ "보호자나 활동지원사가 함께 들어갈 수 있나요?",
+ "장애인 주차구역이나 이동 지원(셔틀 등)이 있나요?",
+ "받으려는 검진(일반·위암·대장암 등)이 모두 가능한가요?"
 ];
-const DAYS = ["토요일","일요일","공휴일","야간"];
-
+const QUERY = "장애인 건강검진기관";
 const $ = id => document.getElementById(id);
 const sido=$("sido"), sgg=$("sgg");
-let selType="general", selDays=new Set();
 
 function fillSido(){
   sido.innerHTML='<option value="">현재 위치 주변</option>'+Object.keys(REGIONS).map(s=>`<option>${s}</option>`).join("");
   fillSgg();
 }
 function fillSgg(){
-  const v=sido.value;
-  sgg.disabled=!v;
-  sgg.innerHTML='<option value="">전체</option>'+(v?REGIONS[v].split(" ").map(g=>`<option>${g}</option>`).join(""):"");
+  const v=sido.value, list=v&&REGIONS[v]?REGIONS[v].split(" "):[];
+  sgg.disabled=!list.length;
+  sgg.innerHTML='<option value="">시·도 전체</option>'+list.map(g=>`<option>${g}</option>`).join("");
 }
 sido.onchange=fillSgg;
 
-$("types").innerHTML=TYPES.map(t=>`<button class="chip${t.id===selType?" on":""}" data-id="${t.id}">${t.label}</button>`).join("");
-$("types").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;selType=b.dataset.id;[...$("types").children].forEach(c=>c.classList.toggle("on",c===b));};
-$("days").innerHTML=DAYS.map(d=>`<button class="chip" data-d="${d}">${d}</button>`).join("");
-$("days").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;const d=b.dataset.d;selDays.has(d)?selDays.delete(d):selDays.add(d);b.classList.toggle("on");};
-
 function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function buildQuery(st){return [st.sido?SHORT[st.sido]:"",st.sgg,QUERY].filter(Boolean).join(" ");}
 
-function buildQuery(st){
-  const t=TYPES.find(x=>x.id===st.type);
-  const region=[st.sido?SHORT[st.sido]:"",st.sgg,st.dong].filter(Boolean).join(" ");
-  const days=st.days.length?st.days.map(d=>d==="야간"?"야간검진":d+"검진").join(" "):"";
-  return [region,t.q,days,st.kw].filter(Boolean).join(" ").replace(/\s+/g," ").trim();
+function mapLinks(q,full){
+  const e=encodeURIComponent(q);
+  return `<a class="${full?"full":"wide"}" href="https://map.naver.com/p/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#03c75a"></span>네이버 지도 ↗</a>
+    <a href="https://map.kakao.com/?q=${e}" target="_blank" rel="noopener"><span class="dot" style="background:#fee500"></span>카카오맵 ↗</a>
+    <a href="https://www.google.com/maps/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#4285f4"></span>구글 지도 ↗</a>`;
 }
 
 function render(st){
-  const q=buildQuery(st), e=encodeURIComponent(q), t=TYPES.find(x=>x.id===st.type);
-  $("qtext").textContent="🔎 "+q+(st.sido?"":"  (현재 위치 기준)");
-  $("links").innerHTML=`
-    <a class="full" href="https://map.naver.com/p/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#03c75a"></span>네이버 지도에서 보기 ↗</a>
-    <a href="https://map.kakao.com/?q=${e}" target="_blank" rel="noopener"><span class="dot" style="background:#fee500"></span>카카오맵 ↗</a>
-    <a href="https://www.google.com/maps/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#4285f4"></span>구글 지도 ↗</a>
-    <a href="https://search.naver.com/search.naver?query=${e}" target="_blank" rel="noopener">네이버 검색 ↗</a>
-    <a href="https://www.nhis.or.kr" target="_blank" rel="noopener">공단 공식 조회 ↗</a>`;
-  $("tip").innerHTML=`<b>${esc(t.label)} 안내</b>${esc(t.tip)}<br><span class="muted">대상·주기는 매년 바뀔 수 있으니 공단 대상조회로 확인하세요.</span>`;
+  const q=buildQuery(st);
+  $("qtext").textContent="🔎 "+q+(st.sido?"":" (현재 위치 기준)");
+  let html=mapLinks(q,true)+`<a class="wide" href="https://search.naver.com/search.naver?query=${encodeURIComponent(q)}" target="_blank" rel="noopener">네이버에서 지정 소식 검색 ↗</a>`;
+  if(st.sgg){
+    const wide=buildQuery({sido:st.sido,sgg:""});
+    html+=`<a class="wide" href="https://map.naver.com/p/search/${encodeURIComponent(wide)}" target="_blank" rel="noopener">결과가 없나요? ${esc(SHORT[st.sido])} 전체로 넓혀 찾기 ↗</a>`;
+  }
+  $("links").innerHTML=html;
   $("result").classList.remove("hidden");
   $("result").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function state(){return {sido:sido.value,sgg:sgg.value,dong:$("dong").value.trim(),type:selType,days:[...selDays],kw:$("kw").value.trim()};}
-
-function loadRecent(){try{return JSON.parse(localStorage.getItem("chk_recent")||"[]")}catch(e){return[]}}
+function loadRecent(){try{return JSON.parse(localStorage.getItem("dis_recent")||"[]")}catch(e){return[]}}
 function saveRecent(st){
-  try{let r=loadRecent().filter(x=>buildQuery(x)!==buildQuery(st));r.unshift(st);localStorage.setItem("chk_recent",JSON.stringify(r.slice(0,5)));}catch(e){}
+  try{let r=loadRecent().filter(x=>buildQuery(x)!==buildQuery(st));r.unshift(st);localStorage.setItem("dis_recent",JSON.stringify(r.slice(0,5)));}catch(e){}
   showRecent();
 }
 function showRecent(){
@@ -181,13 +165,17 @@ function showRecent(){
   $("recent").innerHTML=r.map((x,i)=>`<button data-i="${i}">${esc(buildQuery(x))}</button>`).join("");
 }
 $("recent").onclick=e=>{const b=e.target.closest("button");if(!b)return;const st=loadRecent()[+b.dataset.i];if(!st)return;
-  sido.value=st.sido;fillSgg();sgg.value=st.sgg;$("dong").value=st.dong;$("kw").value=st.kw;
-  selType=st.type;[...$("types").children].forEach(c=>c.classList.toggle("on",c.dataset.id===selType));
-  selDays=new Set(st.days);[...$("days").children].forEach(c=>c.classList.toggle("on",selDays.has(c.dataset.d)));
-  render(st);};
+  sido.value=st.sido;fillSgg();sgg.value=st.sgg;render(st);};
 
-$("go").onclick=()=>{const st=state();render(st);saveRecent(st);};
-fillSido();showRecent();
+function loadChecks(){try{return JSON.parse(localStorage.getItem("dis_checks")||"[]")}catch(e){return[]}}
+function renderChecks(){
+  const on=new Set(loadChecks());
+  $("checks").innerHTML=CHECKS.map((c,i)=>`<label><input type="checkbox" data-i="${i}"${on.has(i)?" checked":""}><span>${c}</span></label>`).join("");
+}
+$("checks").onchange=()=>{try{localStorage.setItem("dis_checks",JSON.stringify([...$("checks").querySelectorAll("input:checked")].map(x=>+x.dataset.i)))}catch(e){}};
+
+$("go").onclick=()=>{const st={sido:sido.value,sgg:sgg.value};render(st);saveRecent(st);};
+fillSido();showRecent();renderChecks();
 </script>
 </body>
 </html>
