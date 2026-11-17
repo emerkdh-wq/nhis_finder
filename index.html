@@ -5,65 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>장애인 건강검진기관 위치찾기</title>
 <style>
-:root{--bg:#f4f6fb;--card:#fff;--ink:#1c2333;--sub:#5a6478;--line:#dde2ec;--pri:#2f5bd3;--pri2:#e6edfc;--warn:#fff6e0}
-@media (prefers-color-scheme:dark){:root{--bg:#11151d;--card:#1a202b;--ink:#e7ebf3;--sub:#a0aabb;--line:#2c3443;--pri:#7c9cff;--pri2:#1f2a44;--warn:#3a321c}}
+:root{--bg:#f4f6fb;--card:#fff;--ink:#1c2333;--sub:#5a6478;--line:#dde2ec;--pri:#2f5bd3;--pri2:#e6edfc;--off:#eef0f4;--offink:#8a93a5;--warn:#fff6e0}
+@media (prefers-color-scheme:dark){:root{--bg:#11151d;--card:#1a202b;--ink:#e7ebf3;--sub:#a0aabb;--line:#2c3443;--pri:#7c9cff;--pri2:#1f2a44;--off:#232a36;--offink:#6f7a8d;--warn:#3a321c}}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
-.wrap{max-width:640px;margin:0 auto;padding:18px 14px 40px}
+.wrap{max-width:680px;margin:0 auto;padding:18px 14px 40px}
 h1{font-size:1.4rem;margin:4px 0 2px}
 .lead{color:var(--sub);font-size:.95rem;margin:0 0 16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
 .card h2{font-size:1.05rem;margin:0 0 12px}
 label.t{display:block;font-size:.9rem;color:var(--sub);margin:10px 0 4px}
-select,input[type=text]{width:100%;min-height:48px;padding:11px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+select,input[type=search]{width:100%;min-height:48px;padding:11px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
 select:focus,input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
-.row{display:flex;gap:8px}.row>*{flex:1}
-.btn{display:block;width:100%;min-height:52px;padding:13px;border:0;border-radius:12px;background:var(--pri);color:#fff;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:14px}
-.q{background:var(--pri2);border-radius:10px;padding:10px 12px;font-weight:700;margin-bottom:12px;word-break:keep-all}
-.links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.links a{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;min-height:48px;padding:12px 8px;border-radius:10px;border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:.95rem;background:var(--card);text-align:center}
-.links a.full{grid-column:1/-1;background:var(--pri);color:#fff;border-color:var(--pri)}
-.links a.wide{grid-column:1/-1}
-.dot{width:10px;height:10px;border-radius:50%;flex:none}
-.tip{background:var(--warn);border-radius:10px;padding:10px 12px;font-size:.92rem;margin-top:12px}
+.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:40px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:999px;font-size:.92rem;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--pri);border-color:var(--pri);color:#fff}
+.count{font-weight:700;margin:4px 2px 10px}
+.inst{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.inst h3{font-size:1.08rem;margin:0 0 2px;word-break:keep-all}
+.addr{color:var(--sub);font-size:.92rem;margin:0 0 10px;word-break:keep-all}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tag{font-size:.82rem;padding:3px 9px;border-radius:999px;background:var(--pri2);color:var(--pri);font-weight:600}
+.tag.no{background:var(--off);color:var(--offink);text-decoration:line-through;font-weight:400}
+.links{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.links a,.links button{display:flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;min-height:44px;padding:8px 6px;border-radius:10px;border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:.88rem;background:var(--card);cursor:pointer;font-family:inherit}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.empty{text-align:center;color:var(--sub);padding:24px 8px}
+.btn2{min-height:44px;margin-top:10px;width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font-size:.95rem;cursor:pointer}
 ul.info{margin:0;padding-left:20px;font-size:.95rem}ul.info li{margin:4px 0}
 .checks label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:.95rem;cursor:pointer}
 .checks label:last-child{border-bottom:0}
 .checks input{width:22px;height:22px;flex:none;margin-top:2px}
-.recent{display:flex;flex-direction:column;gap:6px}
-.recent button{text-align:left;min-height:44px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 12px;border-radius:10px;font-size:.95rem;cursor:pointer}
 .muted{color:var(--sub);font-size:.85rem}
-.hidden{display:none}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.92rem;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
 <main class="wrap">
   <h1>♿ 장애인 건강검진기관 위치찾기</h1>
-  <p class="lead">보건복지부가 지정한 <b>장애인 건강검진기관</b>을 찾습니다. 휠체어로 이용할 수 있는 시설과 장비, 수어통역 같은 의사소통 지원을 갖춘 검진기관이에요.</p>
+  <p class="lead">전국 장애인 건강검진기관 <b id="total"></b>곳 중에서 지역과 검진 종류로 찾아보세요.</p>
 
-  <section class="card" aria-labelledby="h-region">
-    <h2 id="h-region">1. 지역 선택</h2>
+  <section class="card" aria-labelledby="h-filter">
+    <h2 id="h-filter">조건 선택</h2>
     <div class="row">
       <div><label class="t" for="sido">시·도</label><select id="sido"></select></div>
-      <div><label class="t" for="sgg">시·군·구 (선택)</label><select id="sgg"></select></div>
+      <div><label class="t" for="sgg">시·군·구</label><select id="sgg"></select></div>
     </div>
-    <p class="muted" style="margin:8px 0 0">장애인 건강검진기관은 아직 수가 적어서 시·군·구마다 있지 않아요. 결과가 없으면 <b>시·도 전체</b>로 넓혀 찾아보세요. 시·도를 비워두면 지도 앱이 <b>현재 위치 주변</b>으로 검색합니다.</p>
-    <button class="btn" id="go">장애인 건강검진기관 찾기</button>
+    <label class="t" for="kw">기관명·주소 검색</label>
+    <input type="search" id="kw" placeholder="예: 의료원, 수원, 재활">
+    <label class="t" id="l-type">받을 검진 (선택한 검진이 모두 되는 곳만 보여요)</label>
+    <div class="chips" id="types" role="group" aria-labelledby="l-type"></div>
+    <button class="btn2" id="reset">조건 초기화</button>
   </section>
 
-  <section class="card hidden" id="result" aria-live="polite" aria-labelledby="h-result">
-    <h2 id="h-result">2. 지도에서 보기</h2>
-    <div class="q" id="qtext"></div>
-    <div class="links" id="links"></div>
-    <div class="tip">지도 검색 결과에는 일반 병원도 섞여 나올 수 있어요. 병원 이름 옆에 '장애인 건강검진기관'이 있는지 확인하고, 예약 전에 꼭 전화로 확인하세요.</div>
-  </section>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div id="list"></div>
 
-  <section class="card hidden" id="recentCard" aria-labelledby="h-recent">
-    <h2 id="h-recent">최근 검색</h2>
-    <div class="recent" id="recent"></div>
-  </section>
-
-  <section class="card" aria-labelledby="h-check">
+  <section class="card" aria-labelledby="h-check" style="margin-top:20px">
     <h2 id="h-check">📞 예약 전화할 때 확인할 것</h2>
     <p class="muted" style="margin:0 0 6px">필요한 항목에 체크해 두고, 전화할 때 하나씩 물어보세요.</p>
     <div class="checks" id="checks"></div>
@@ -72,40 +72,20 @@ ul.info{margin:0;padding-left:20px;font-size:.95rem}ul.info li{margin:4px 0}
   <section class="card" aria-labelledby="h-info">
     <h2 id="h-info">📌 알아두면 좋은 점</h2>
     <ul class="info">
-      <li>장애인 건강검진기관에서도 일반 국가건강검진과 암검진을 똑같이 받을 수 있어요. 대상 여부는 국민건강보험공단 「건강검진 대상조회」나 'The건강보험' 앱에서 확인하세요.</li>
-      <li>정부는 장애인 건강검진기관을 계속 늘리고 있어요. 새로 지정된 곳은 지도에 아직 표시되지 않을 수 있으니 공식 목록도 함께 확인하세요.</li>
+      <li>'미실시'로 표시된 검진은 그 기관에서 받을 수 없어요.</li>
+      <li>본인이 올해 검진 대상인지는 국민건강보험공단 「건강검진 대상조회」나 'The건강보험' 앱에서 확인하세요.</li>
       <li>국민건강보험공단 고객센터: <b>1577-1000</b> <a href="tel:15771000">전화걸기</a></li>
       <li>보건복지콜센터: <b>129</b> <a href="tel:129">전화걸기</a></li>
     </ul>
-    <div class="links" style="margin-top:12px">
-      <a class="wide" href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단 ↗</a>
-      <a class="wide" href="https://www.nrc.go.kr" target="_blank" rel="noopener">국립재활원 (장애인 건강보건관리) ↗</a>
-    </div>
   </section>
-  <p class="muted" style="text-align:center">지도 검색 결과는 각 지도 서비스의 정보입니다. 지정 여부는 공식 기관에서 최종 확인하세요.</p>
+  <p class="muted" style="text-align:center">기관 목록은 제공된 엑셀 자료 기준입니다. 운영 여부와 검진 가능 항목은 방문 전에 기관에 확인하세요.</p>
 </main>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-const REGIONS = {
-"서울특별시":"강남구 강동구 강북구 강서구 관악구 광진구 구로구 금천구 노원구 도봉구 동대문구 동작구 마포구 서대문구 서초구 성동구 성북구 송파구 양천구 영등포구 용산구 은평구 종로구 중구 중랑구",
-"부산광역시":"강서구 금정구 기장군 남구 동구 동래구 부산진구 북구 사상구 사하구 서구 수영구 연제구 영도구 중구 해운대구",
-"대구광역시":"군위군 남구 달서구 달성군 동구 북구 서구 수성구 중구",
-"인천광역시":"강화군 계양구 남동구 동구 미추홀구 부평구 서구 연수구 옹진군 중구",
-"광주광역시":"광산구 남구 동구 북구 서구",
-"대전광역시":"대덕구 동구 서구 유성구 중구",
-"울산광역시":"남구 동구 북구 울주군 중구",
-"세종특별자치시":"",
-"경기도":"가평군 고양시 과천시 광명시 광주시 구리시 군포시 김포시 남양주시 동두천시 부천시 성남시 수원시 시흥시 안산시 안성시 안양시 양주시 양평군 여주시 연천군 오산시 용인시 의왕시 의정부시 이천시 파주시 평택시 포천시 하남시 화성시",
-"강원특별자치도":"강릉시 고성군 동해시 삼척시 속초시 양구군 양양군 영월군 원주시 인제군 정선군 철원군 춘천시 태백시 평창군 홍천군 화천군 횡성군",
-"충청북도":"괴산군 단양군 보은군 영동군 옥천군 음성군 제천시 증평군 진천군 청주시 충주시",
-"충청남도":"계룡시 공주시 금산군 논산시 당진시 보령시 부여군 서산시 서천군 아산시 예산군 천안시 청양군 태안군 홍성군",
-"전북특별자치도":"고창군 군산시 김제시 남원시 무주군 부안군 순창군 완주군 익산시 임실군 장수군 전주시 정읍시 진안군",
-"전라남도":"강진군 고흥군 곡성군 광양시 구례군 나주시 담양군 목포시 무안군 보성군 순천시 신안군 여수시 영광군 영암군 완도군 장성군 장흥군 진도군 함평군 해남군 화순군",
-"경상북도":"경산시 경주시 고령군 구미시 김천시 문경시 봉화군 상주시 성주군 안동시 영덕군 영양군 영주시 영천시 예천군 울릉군 울진군 의성군 청도군 청송군 칠곡군 포항시",
-"경상남도":"거제시 거창군 고성군 김해시 남해군 밀양시 사천시 산청군 양산시 의령군 진주시 창녕군 창원시 통영시 하동군 함안군 함양군 합천군",
-"제주특별자치도":"서귀포시 제주시"
-};
-const SHORT = {"서울특별시":"서울","부산광역시":"부산","대구광역시":"대구","인천광역시":"인천","광주광역시":"광주","대전광역시":"대전","울산광역시":"울산","세종특별자치시":"세종","경기도":"경기","강원특별자치도":"강원","충청북도":"충북","충청남도":"충남","전북특별자치도":"전북","전라남도":"전남","경상북도":"경북","경상남도":"경남","제주특별자치도":"제주"};
+const COLS = ["일반","구강","위암","대장암","간암","유방암","자궁경부암","폐암"];
+// [순번, 기관명, 시도, 시군구, 우편번호, 주소, 일반, 구강, 위암, 대장암, 간암, 유방암, 자궁경부암, 폐암]
+const DATA = [["1", "대전보훈병원", "대전광역시", "대덕구", "34314", "대전광역시 대덕구 대청로82번길 147", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["2", "동남권원자력의학원", "부산광역시", "기장군", "46033", "부산광역시 기장군 장안읍 좌동길 40", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["3", "충북대학교병원", "충청북도", "청주시 서원구", "28644", "충청북도 청주시 서원구 1순환로 776-0 충북대학교병원", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["4", "한국원자력의학원원자력병원", "서울특별시", "노원구", "01812", "서울특별시 노원구 노원로 75 한국원자력의학원 (공릉동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["5", "서울특별시어린이병원", "서울특별시", "서초구", "06801", "서울특별시 서초구 헌릉로 260 (내곡동)", "내원", "내원", "미실시", "미실시", "미실시", "미실시", "미실시", "미실시"], ["6", "경기도의료원 안성병원", "경기도", "안성시", "17568", "경기도 안성시 남파로 95 경기도의료원 안성병원 (당왕동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["7", "강원특별자치도영월의료원", "강원특별자치도", "영월군", "26234", "강원특별자치도 영월군 영월읍 중앙1로 59", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["8", "경기도의료원의정부병원", "경기도", "의정부시", "11671", "경기도 의정부시 흥선로 142 (의정부동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["9", "경기도의료원포천병원", "경기도", "포천시", "11142", "경기도 포천시 포천로 1648 (신읍동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["10", "의료법인안동병원", "경상북도", "안동시", "36743", "경상북도 안동시 앙실로 11 (수상동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["11", "국제바로병원", "인천광역시", "남동구", "21504", "인천광역시 남동구 석정로 518 1층일부, 2층일부 ~ 9층 (간석동)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "미실시"], ["12", "경기도의료원 이천병원", "경기도", "이천시", "17366", "경기도 이천시 경충대로 2742 (관고동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["13", "경기도의료원파주병원", "경기도", "파주시", "10922", "경기도 파주시 중앙로 207 경기도립의료원파주병원 (금촌동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["14", "우리동네의원", "전남광주통합특별시", "광산구", "62359", "전남광주통합특별시 광산구 무진대로211번길 28 빛고을국민체육센터 1층 (우산동)", "내원", "미실시", "내원", "미실시", "내원", "내원", "미실시", "미실시"], ["15", "장흥통합의료병원", "전남광주통합특별시", "장흥군", "59338", "전남광주통합특별시 장흥군 안양면 로하스로 121", "내원", "미실시", "미실시", "미실시", "미실시", "미실시", "미실시", "미실시"], ["16", "목포시의료원", "전남광주통합특별시", "목포시", "58701", "전남광주통합특별시 목포시 이로로 18 (용해동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["17", "서울적십자병원", "서울특별시", "종로구", "03181", "서울특별시 종로구 새문안로 9 적십자병원 (평동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["18", "충청북도 충주의료원", "충청북도", "충주시", "27486", "충청북도 충주시 안림로 239-50 충청북도충주의료원", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["19", "충청남도 천안의료원", "충청남도", "천안시 동남구", "31071", "충청남도 천안시 동남구 충절로 537 (삼룡동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["20", "전라남도 강진의료원", "전남광주통합특별시", "강진군", "59227", "전남광주통합특별시 강진군 강진읍 탐진로 5", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["21", "전북특별자치도 남원의료원", "전북특별자치도", "남원시", "55726", "전북특별자치도 남원시 충정로 365 (고죽동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["22", "인천광역시의료원", "인천광역시", "제물포구", "22532", "인천광역시 동구 방축로 217", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["23", "대구의료원", "대구광역시", "서구", "41845", "대구광역시 서구 평리로 157 (중리동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"], ["24", "충청남도 서산의료원", "충청남도", "서산시", "32001", "충청남도 서산시 중앙로 149 (석림동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["25", "밀양병원", "경상남도", "밀양시", "50434", "경상남도 밀양시 밀양대로 1823 (삼문동)", "내원", "미실시", "내원", "내원", "내원", "내원", "미실시", "미실시"], ["26", "성남시의료원", "경기도", "성남시 수정구", "13290", "경기도 성남시 수정구 수정로171번길 10 성남시의료원 (태평동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["27", "전라남도 순천의료원", "전남광주통합특별시", "순천시", "57940", "전남광주통합특별시 순천시 서문성터길 2 (매곡동)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "미실시"], ["28", "대청병원", "대전광역시", "서구", "35403", "대전광역시 서구 계백로 1322 (정림동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"], ["29", "의료법인 은성의료재단 좋은삼선병원", "부산광역시", "사상구", "47007", "부산광역시 사상구 가야대로 326 좋은삼선병원 (주례동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["30", "의료법인환명의료재단 조은금강병원", "경상남도", "김해시", "50880", "경상남도 김해시 김해대로 1814-37 (삼계동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"], ["31", "충청북도 청주의료원", "충청북도", "청주시 서원구", "28547", "충청북도 청주시 서원구 흥덕로 48-0 청주의료원", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["32", "양산부산대학교병원", "경상남도", "양산시", "50612", "경상남도 양산시 물금읍 금오로 20", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["33", "연제일신병원", "부산광역시", "연제구", "47576", "부산광역시 연제구 고분로 6 (연산동)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "미실시"], ["34", "의료법인 중앙의료재단 중앙병원", "제주특별자치도", "제주시", "63109", "제주특별자치도 제주시 월랑로 91-0 중앙병원", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"], ["35", "부산광역시의료원", "부산광역시", "연제구", "47527", "부산광역시 연제구 월드컵대로 359 (거제동, 1동, 5동일부)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["36", "경북권역재활병원", "경상북도", "경산시", "38607", "경상북도 경산시 미래로 120-0 (평산동)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "미실시"], ["37", "국립재활원", "서울특별시", "강북구", "01022", "서울특별시 강북구 삼각산로 58 국립재활원 (수유동)", "내원", "내원", "내원", "미실시", "미실시", "내원", "미실시", "미실시"], ["38", "제주특별자치도 서귀포의료원", "제주특별자치도", "서귀포시", "63585", "제주특별자치도 서귀포시 장수로 47 (동홍동)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["39", "경기도의료원 수원병원", "경기도", "수원시 장안구", "16316", "경기도 수원시 장안구 수성로245번길 69 (정자동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"], ["40", "부산성모병원(재단법인 천주교부산교구유지재단)", "부산광역시", "남구", "48575", "부산광역시 남구 용호로232번길 25-14 (용호동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["41", "경상남도마산의료원", "경상남도", "창원시 마산합포구", "51736", "경상남도 창원시 마산합포구 3·15대로 231 (중앙동3가)", "내원", "미실시", "내원", "내원", "내원", "내원", "내원", "내원"], ["42", "경상북도안동의료원", "경상북도", "안동시", "36694", "경상북도 안동시 태사2길 55 (북문동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "내원"], ["43", "서울특별시서울의료원", "서울특별시", "중랑구", "02053", "서울특별시 중랑구 신내로 156 (신내동)", "내원", "내원", "내원", "내원", "내원", "내원", "내원", "미실시"]];
 const CHECKS = [
  "휠체어로 검진실·화장실까지 이동할 수 있나요?",
  "휠체어 체중계, 높이 조절 검진대 같은 장비가 있나요?",
@@ -113,69 +93,64 @@ const CHECKS = [
  "시각장애인을 위한 안내(점자, 음성, 동행)가 있나요?",
  "발달장애인을 위한 쉬운 안내문이나 진정·수면 검사가 가능한가요?",
  "보호자나 활동지원사가 함께 들어갈 수 있나요?",
- "장애인 주차구역이나 이동 지원(셔틀 등)이 있나요?",
- "받으려는 검진(일반·위암·대장암 등)이 모두 가능한가요?"
+ "장애인 주차구역이나 이동 지원(셔틀 등)이 있나요?"
 ];
-const QUERY = "장애인 건강검진기관";
-const $ = id => document.getElementById(id);
-const sido=$("sido"), sgg=$("sgg");
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sido=$("sido"), sgg=$("sgg"), kw=$("kw");
+const selTypes=new Set();
+
+const inst=DATA.map(r=>({no:r[0],name:r[1],sido:r[2],sgg:r[3],zip:r[4],addr:r[5],ok:COLS.map((c,i)=>r[6+i]==="내원")}));
+$("total").textContent=inst.length;
 
 function fillSido(){
-  sido.innerHTML='<option value="">현재 위치 주변</option>'+Object.keys(REGIONS).map(s=>`<option>${s}</option>`).join("");
-  fillSgg();
+  const cnt={};inst.forEach(x=>cnt[x.sido]=(cnt[x.sido]||0)+1);
+  sido.innerHTML=`<option value="">전국 (${inst.length})</option>`+Object.keys(cnt).sort((a,b)=>a.localeCompare(b,"ko")).map(s=>`<option value="${esc(s)}">${esc(s)} (${cnt[s]})</option>`).join("");
 }
 function fillSgg(){
-  const v=sido.value, list=v&&REGIONS[v]?REGIONS[v].split(" "):[];
-  sgg.disabled=!list.length;
-  sgg.innerHTML='<option value="">시·도 전체</option>'+list.map(g=>`<option>${g}</option>`).join("");
+  const cnt={};inst.filter(x=>x.sido===sido.value).forEach(x=>cnt[x.sgg]=(cnt[x.sgg]||0)+1);
+  const keys=Object.keys(cnt).sort((a,b)=>a.localeCompare(b,"ko"));
+  sgg.disabled=!keys.length;
+  sgg.innerHTML=`<option value="">전체</option>`+keys.map(s=>`<option value="${esc(s)}">${esc(s)} (${cnt[s]})</option>`).join("");
 }
-sido.onchange=fillSgg;
+$("types").innerHTML=COLS.map((c,i)=>`<button class="chip" aria-pressed="false" data-i="${i}">${c}</button>`).join("");
+$("types").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;const i=+b.dataset.i;
+  selTypes.has(i)?selTypes.delete(i):selTypes.add(i);b.setAttribute("aria-pressed",selTypes.has(i));render();};
 
-function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-function buildQuery(st){return [st.sido?SHORT[st.sido]:"",st.sgg,QUERY].filter(Boolean).join(" ");}
+function render(){
+  const q=kw.value.trim().replace(/\s+/g,"");
+  const res=inst.filter(x=>(!sido.value||x.sido===sido.value)&&(!sgg.value||x.sgg===sgg.value)
+    &&(!q||(x.name+x.addr).replace(/\s+/g,"").includes(q))&&[...selTypes].every(i=>x.ok[i]));
+  $("count").textContent=`검색 결과 ${res.length}곳`;
+  if(!res.length){$("list").innerHTML=`<div class="card empty">조건에 맞는 기관이 없어요.<br>시·도나 검진 종류 조건을 줄여 보세요.</div>`;return;}
+  $("list").innerHTML=res.map(x=>{
+    const mq=encodeURIComponent(x.name+" "+x.sgg), aq=encodeURIComponent(x.addr);
+    return `<article class="inst">
+      <h3>${esc(x.name)}</h3>
+      <p class="addr">${esc(x.addr)}${x.zip?` (우)${esc(x.zip)}`:""}</p>
+      <div class="tags" aria-label="검진 가능 항목">${COLS.map((c,i)=>`<span class="tag${x.ok[i]?"":" no"}">${c}${x.ok[i]?"":"<span class='sr' style='position:absolute;left:-9999px'> 미실시</span>"}</span>`).join("")}</div>
+      <div class="links">
+        <a href="https://map.naver.com/p/search/${mq}" target="_blank" rel="noopener"><span class="dot" style="background:#03c75a"></span>네이버</a>
+        <a href="https://map.kakao.com/?q=${aq}" target="_blank" rel="noopener"><span class="dot" style="background:#fee500"></span>카카오</a>
+        <button data-copy="${esc(x.addr)}">주소 복사</button>
+      </div>
+    </article>`;}).join("");
+}
+$("list").onclick=async e=>{const b=e.target.closest("[data-copy]");if(!b)return;
+  try{await navigator.clipboard.writeText(b.dataset.copy);toast("주소를 복사했어요");}catch(err){toast("복사가 막혀 있어요. 주소를 길게 눌러 복사하세요");}};
+let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1800);}
 
-function mapLinks(q,full){
-  const e=encodeURIComponent(q);
-  return `<a class="${full?"full":"wide"}" href="https://map.naver.com/p/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#03c75a"></span>네이버 지도 ↗</a>
-    <a href="https://map.kakao.com/?q=${e}" target="_blank" rel="noopener"><span class="dot" style="background:#fee500"></span>카카오맵 ↗</a>
-    <a href="https://www.google.com/maps/search/${e}" target="_blank" rel="noopener"><span class="dot" style="background:#4285f4"></span>구글 지도 ↗</a>`;
-}
-
-function render(st){
-  const q=buildQuery(st);
-  $("qtext").textContent="🔎 "+q+(st.sido?"":" (현재 위치 기준)");
-  let html=mapLinks(q,true)+`<a class="wide" href="https://search.naver.com/search.naver?query=${encodeURIComponent(q)}" target="_blank" rel="noopener">네이버에서 지정 소식 검색 ↗</a>`;
-  if(st.sgg){
-    const wide=buildQuery({sido:st.sido,sgg:""});
-    html+=`<a class="wide" href="https://map.naver.com/p/search/${encodeURIComponent(wide)}" target="_blank" rel="noopener">결과가 없나요? ${esc(SHORT[st.sido])} 전체로 넓혀 찾기 ↗</a>`;
-  }
-  $("links").innerHTML=html;
-  $("result").classList.remove("hidden");
-  $("result").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function loadRecent(){try{return JSON.parse(localStorage.getItem("dis_recent")||"[]")}catch(e){return[]}}
-function saveRecent(st){
-  try{let r=loadRecent().filter(x=>buildQuery(x)!==buildQuery(st));r.unshift(st);localStorage.setItem("dis_recent",JSON.stringify(r.slice(0,5)));}catch(e){}
-  showRecent();
-}
-function showRecent(){
-  const r=loadRecent();
-  $("recentCard").classList.toggle("hidden",!r.length);
-  $("recent").innerHTML=r.map((x,i)=>`<button data-i="${i}">${esc(buildQuery(x))}</button>`).join("");
-}
-$("recent").onclick=e=>{const b=e.target.closest("button");if(!b)return;const st=loadRecent()[+b.dataset.i];if(!st)return;
-  sido.value=st.sido;fillSgg();sgg.value=st.sgg;render(st);};
+sido.onchange=()=>{fillSgg();render();};
+sgg.onchange=render; kw.oninput=render;
+$("reset").onclick=()=>{sido.value="";fillSgg();kw.value="";selTypes.clear();
+  [...$("types").children].forEach(c=>c.setAttribute("aria-pressed","false"));render();};
 
 function loadChecks(){try{return JSON.parse(localStorage.getItem("dis_checks")||"[]")}catch(e){return[]}}
-function renderChecks(){
-  const on=new Set(loadChecks());
-  $("checks").innerHTML=CHECKS.map((c,i)=>`<label><input type="checkbox" data-i="${i}"${on.has(i)?" checked":""}><span>${c}</span></label>`).join("");
-}
+const on=new Set(loadChecks());
+$("checks").innerHTML=CHECKS.map((c,i)=>`<label><input type="checkbox" data-i="${i}"${on.has(i)?" checked":""}><span>${c}</span></label>`).join("");
 $("checks").onchange=()=>{try{localStorage.setItem("dis_checks",JSON.stringify([...$("checks").querySelectorAll("input:checked")].map(x=>+x.dataset.i)))}catch(e){}};
 
-$("go").onclick=()=>{const st={sido:sido.value,sgg:sgg.value};render(st);saveRecent(st);};
-fillSido();showRecent();renderChecks();
+fillSido();fillSgg();render();
 </script>
 </body>
 </html>
